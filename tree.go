@@ -17,12 +17,14 @@ type Tree interface {
 
 type Node fmt.Stringer
 
+// String returns the whole tree as a string.
 func String(tree Tree) string {
 	var buffer bytes.Buffer
 	Write(tree, &buffer)
 	return buffer.String()
 }
 
+// Write writes the tree line by line to the specified writer.
 func Write(tree Tree, writer io.Writer) error {
 	return format(tree, tree.RootNodes(), true, "", writer)
 }
